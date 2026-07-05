@@ -29,7 +29,7 @@ import { Testimonial } from '../../core/models/testimonial.model';
       display: flex;
       flex-direction: column;
     }
-    .stars { color: var(--gold); margin-bottom: 1rem; letter-spacing: 2px; }
+    .stars { color: var(--color-accent-text); margin-bottom: 1rem; letter-spacing: 2px; }
     .stars .muted { color: var(--border); }
     .message { flex: 1; color: var(--ink); font-style: italic; }
     .author { display: flex; flex-direction: column; margin-top: 1rem; }

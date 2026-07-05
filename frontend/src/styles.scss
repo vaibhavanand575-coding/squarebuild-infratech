@@ -13,6 +13,10 @@ html, body { margin: 0; padding: 0; }
   --color-accent: #C9A227;
   --color-accent-hover: #B08D1E;
   --color-on-accent: #3A2E00;
+  /* WCAG AA-compliant gold for standalone text (prices, stat figures) on
+     light backgrounds — #C9A227 itself only reaches 2.42:1 on white, well
+     under the 4.5:1 (normal text) / 3:1 (large text) AA minimums. */
+  --color-accent-text: #8F6323;
   --color-text: #2D2A26;
   --color-text-muted: #6B6459;
   --color-border: #E4DFD3;
@@ -110,7 +114,7 @@ button { font-family: var(--font-sans); }
 
 /* Reserved for price tags / key stat figures per the 60-30-10 rule: gold only for CTAs & key figures */
 .figure-accent {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 
 .section-header {

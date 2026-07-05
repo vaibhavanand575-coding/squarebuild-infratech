@@ -41,15 +41,15 @@
           <div class="spec"><span>Status</span><strong>{{ property.status }}</strong></div>
         </div>
 
-        <h3 class="section-title">Amenities</h3>
+        <h2 class="section-title">Amenities</h2>
         <ul class="amenities-list">
           <li *ngFor="let amenity of property.amenities"><span class="check">&#10003;</span> {{ amenity }}</li>
         </ul>
 
-        <h3 class="section-title">Gallery</h3>
+        <h2 class="section-title">Gallery</h2>
         <div class="detail-gallery">
           <div class="detail-gallery-main img-fallback">
-            <img [src]="property.imageUrls[activeImage]" alt="" (error)="hideImg($event)">
+            <img [src]="property.imageUrls[activeImage]" [alt]="property.title + ' photo ' + (activeImage + 1)" (error)="hideImg($event)">
           </div>
           <div class="detail-gallery-thumbs">
             <button
@@ -58,7 +58,7 @@
               [class.active]="i === activeImage"
               (click)="setActiveImage(i)"
             >
-              <img [src]="img" alt="" (error)="hideImg($event)">
+              <img [src]="img" [alt]="property.title + ' thumbnail ' + (i + 1)" (error)="hideImg($event)">
             </button>
           </div>
         </div>
