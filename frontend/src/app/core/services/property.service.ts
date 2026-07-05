@@ -15,6 +15,8 @@ export class PropertyService {
     if (filters.status) params = params.set('status', filters.status);
     if (filters.minPrice != null) params = params.set('minPrice', filters.minPrice);
     if (filters.maxPrice != null) params = params.set('maxPrice', filters.maxPrice);
+    if (filters.minSize != null) params = params.set('minSize', filters.minSize);
+    if (filters.maxSize != null) params = params.set('maxSize', filters.maxSize);
     return this.http.get<PropertySummary[]>(this.baseUrl, { params });
   }
 

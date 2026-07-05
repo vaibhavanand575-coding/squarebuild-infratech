@@ -27,8 +27,10 @@ public class PropertyService {
         this.propertyRepository = propertyRepository;
     }
 
-    public List<PropertySummaryDto> findAll(PropertyType type, PropertyStatus status, BigDecimal minPrice, BigDecimal maxPrice) {
-        var spec = PropertySpecifications.withFilters(type, status, minPrice, maxPrice);
+    public List<PropertySummaryDto> findAll(PropertyType type, PropertyStatus status,
+                                             BigDecimal minPrice, BigDecimal maxPrice,
+                                             BigDecimal minSize, BigDecimal maxSize) {
+        var spec = PropertySpecifications.withFilters(type, status, minPrice, maxPrice, minSize, maxSize);
         return propertyRepository.findAll(spec).stream().map(this::toSummaryDto).toList();
     }
 

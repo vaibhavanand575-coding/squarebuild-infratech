@@ -29,4 +29,6 @@ export interface PropertyFilters {
   status?: PropertyStatus;
   minPrice?: number;
   maxPrice?: number;
+  minSize?: number;
+  maxSize?: number;
 }

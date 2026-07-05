@@ -12,7 +12,9 @@ public final class PropertySpecifications {
     private PropertySpecifications() {}
 
     public static Specification<PropertyEntity> withFilters(
-            PropertyType type, PropertyStatus status, BigDecimal minPrice, BigDecimal maxPrice) {
+            PropertyType type, PropertyStatus status,
+            BigDecimal minPrice, BigDecimal maxPrice,
+            BigDecimal minSize, BigDecimal maxSize) {
         return (root, query, cb) -> {
             var predicates = cb.conjunction();
             if (type != null) {
@@ -26,6 +28,12 @@ public final class PropertySpecifications {
             }
             if (maxPrice != null) {
                 predicates = cb.and(predicates, cb.le(root.get("price"), maxPrice));
+            }
+            if (minSize != null) {
+                predicates = cb.and(predicates, cb.ge(root.get("size"), minSize));
+            }
+            if (maxSize != null) {
+                predicates = cb.and(predicates, cb.le(root.get("size"), maxSize));
             }
             return predicates;
         };

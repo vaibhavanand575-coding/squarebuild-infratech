@@ -1,21 +1,58 @@
 <section class="page-hero">
   <div class="container">
     <span class="eyebrow hero-eyebrow">Properties</span>
-    <h1>Plots, Villas, Farmhouses &amp; Commercial Spaces</h1>
+    <h1>Plots, Villas &amp; Farmhouses</h1>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <div class="filter-bar">
-      <div class="type-filters">
-        <button
-          *ngFor="let filter of typeFilters"
-          [class.active]="activeType === filter.value"
-          (click)="setType(filter.value)"
-        >{{ filter.label }}</button>
+    <div class="filters-panel">
+      <div class="filter-group">
+        <span class="filter-label">Type</span>
+        <div class="chip-row">
+          <button
+            *ngFor="let filter of typeFilters"
+            [class.active]="activeType === filter.value"
+            (click)="setType(filter.value)"
+          >{{ filter.label }}</button>
+        </div>
       </div>
 
+      <div class="filter-group">
+        <span class="filter-label">Status</span>
+        <div class="chip-row">
+          <button
+            *ngFor="let filter of statusFilters"
+            [class.active]="activeStatus === filter.value"
+            (click)="setStatus(filter.value)"
+          >{{ filter.label }}</button>
+        </div>
+      </div>
+
+      <div class="filter-group range-group">
+        <span class="filter-label">Price Range (&#8377;)</span>
+        <div class="range-inputs">
+          <input type="number" placeholder="Min" [(ngModel)]="minPrice" (change)="applyFilters()" min="0">
+          <span>&ndash;</span>
+          <input type="number" placeholder="Max" [(ngModel)]="maxPrice" (change)="applyFilters()" min="0">
+        </div>
+      </div>
+
+      <div class="filter-group range-group">
+        <span class="filter-label">Size Range</span>
+        <div class="range-inputs">
+          <input type="number" placeholder="Min" [(ngModel)]="minSize" (change)="applyFilters()" min="0">
+          <span>&ndash;</span>
+          <input type="number" placeholder="Max" [(ngModel)]="maxSize" (change)="applyFilters()" min="0">
+        </div>
+      </div>
+
+      <button class="reset-link" (click)="resetFilters()">Reset Filters</button>
+    </div>
+
+    <div class="results-bar">
+      <p class="result-count">{{ results.length }} propert{{ results.length === 1 ? 'y' : 'ies' }} found</p>
       <select class="sort-select" (change)="setSort($any($event.target).value)">
         <option value="default">Sort: Featured</option>
         <option value="price-asc">Price: Low to High</option>
@@ -23,14 +60,12 @@
       </select>
     </div>
 
-    <p class="result-count">{{ filtered.length }} propert{{ filtered.length === 1 ? 'y' : 'ies' }} found</p>
-
-    <div class="grid grid-4">
-      <app-property-card *ngFor="let property of filtered" [property]="property"></app-property-card>
+    <div class="grid grid-4" *ngIf="results.length">
+      <app-property-card *ngFor="let property of results" [property]="property"></app-property-card>
     </div>
 
-    <div class="empty-state" *ngIf="!filtered.length">
-      <p>No properties match this filter right now. Try another category.</p>
+    <div class="empty-state" *ngIf="!loading && !results.length">
+      <p>No properties match these filters right now. Try widening your search.</p>
     </div>
   </div>
 </section>

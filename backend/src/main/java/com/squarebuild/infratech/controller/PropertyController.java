@@ -25,9 +25,11 @@ public class PropertyController {
             @RequestParam(required = false) PropertyType type,
             @RequestParam(required = false) PropertyStatus status,
             @RequestParam(required = false) BigDecimal minPrice,
-            @RequestParam(required = false) BigDecimal maxPrice
+            @RequestParam(required = false) BigDecimal maxPrice,
+            @RequestParam(required = false) BigDecimal minSize,
+            @RequestParam(required = false) BigDecimal maxSize
     ) {
-        return propertyService.findAll(type, status, minPrice, maxPrice);
+        return propertyService.findAll(type, status, minPrice, maxPrice, minSize, maxSize);
     }
 
     @GetMapping("/{slug}")
