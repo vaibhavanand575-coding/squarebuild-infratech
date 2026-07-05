@@ -4,7 +4,31 @@ server:
 spring:
   application:
     name: infratech-service
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  mail:
+    host: ${SMTP_HOST:}
+    port: ${SMTP_PORT:587}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 infratech:
   cors:
-    allowed-origin: http://localhost:4200
+    allowed-origin: ${CORS_ALLOWED_ORIGIN:http://localhost:4200}
+
+app:
+  admin:
+    username: ${ADMIN_USERNAME:admin}
+    password: ${ADMIN_PASSWORD:admin123}
+  mail:
+    # Email notifications are opt-in: without real SMTP creds, leave this false
+    # so enquiry submissions never fail just because SMTP isn't configured yet.
+    enabled: ${MAIL_ENABLED:false}
+    from: ${MAIL_FROM:no-reply@squarebuildinfratech.com}
+    notify-to: ${MAIL_NOTIFY_TO:sales@squarebuildinfratech.com}

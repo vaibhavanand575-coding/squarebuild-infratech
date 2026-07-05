@@ -13,6 +13,6 @@ public class StatsService {
     }
 
     public CompanyStats getStats() {
-        return new CompanyStats(73000, propertyService.count(), 480, 25, 2025);
+        return new CompanyStats(73000, (int) propertyService.count(), 480, 25, 2025);
     }
 }

@@ -1,0 +1,21 @@
+# Production profile — PostgreSQL via environment variables.
+# Required env vars: DB_URL, DB_USERNAME, DB_PASSWORD
+# (DB_URL example: jdbc:postgresql://<host>:5432/<database>)
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+app:
+  mail:
+    enabled: ${MAIL_ENABLED:true}

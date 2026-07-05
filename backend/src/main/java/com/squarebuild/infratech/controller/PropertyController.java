@@ -1,12 +1,13 @@
 package com.squarebuild.infratech.controller;
 
-import com.squarebuild.infratech.model.Property;
-import com.squarebuild.infratech.model.PropertySummary;
+import com.squarebuild.infratech.dto.PropertyDetailDto;
+import com.squarebuild.infratech.dto.PropertySummaryDto;
+import com.squarebuild.infratech.entity.PropertyStatus;
+import com.squarebuild.infratech.entity.PropertyType;
 import com.squarebuild.infratech.service.PropertyService;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -20,13 +21,17 @@ public class PropertyController {
     }
 
     @GetMapping
-    public List<PropertySummary> getAll() {
-        return propertyService.findAllSummaries();
+    public List<PropertySummaryDto> getAll(
+            @RequestParam(required = false) PropertyType type,
+            @RequestParam(required = false) PropertyStatus status,
+            @RequestParam(required = false) BigDecimal minPrice,
+            @RequestParam(required = false) BigDecimal maxPrice
+    ) {
+        return propertyService.findAll(type, status, minPrice, maxPrice);
     }
 
     @GetMapping("/{slug}")
-    public Property getOne(@PathVariable String slug) {
-        return propertyService.findBySlug(slug)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Property not found"));
+    public PropertyDetailDto getOne(@PathVariable String slug) {
+        return propertyService.findBySlug(slug);
     }
 }

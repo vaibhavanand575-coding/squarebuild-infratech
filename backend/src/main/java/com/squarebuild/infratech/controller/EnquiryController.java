@@ -1,7 +1,7 @@
 package com.squarebuild.infratech.controller;
 
-import com.squarebuild.infratech.model.EnquiryRequest;
-import com.squarebuild.infratech.model.EnquiryResponse;
+import com.squarebuild.infratech.dto.EnquiryRequestDto;
+import com.squarebuild.infratech.dto.EnquiryResponseDto;
 import com.squarebuild.infratech.service.EnquiryService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class EnquiryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public EnquiryResponse submit(@Valid @RequestBody EnquiryRequest request) {
+    public EnquiryResponseDto submit(@Valid @RequestBody EnquiryRequestDto request) {
         return enquiryService.submit(request);
     }
 }
