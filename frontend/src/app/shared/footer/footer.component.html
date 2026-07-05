@@ -32,15 +32,17 @@
 
     <div class="footer-contact">
       <h4>Contact</h4>
-      <p>Sector 62, Aligarh&ndash;Palwal Highway, Uttar Pradesh, India</p>
-      <p><a href="tel:+911204567890">+91 120 456 7890</a></p>
-      <p><a href="mailto:info&#64;squarebuildinfratech.com">info&#64;squarebuildinfratech.com</a></p>
+      <p>{{ config.address }}</p>
+      <p><a [href]="callHref">{{ config.phoneDisplay }}</a></p>
+      <p><a [href]="'mailto:' + config.email">{{ config.email }}</a></p>
+      <p>{{ config.workingHours }}</p>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <div class="container">
-      &copy; {{ year }} Squarebuild Infratech Pvt. Ltd. All rights reserved.
+    <div class="container footer-bottom-inner">
+      <span>&copy; {{ year }} Squarebuild Infratech Pvt. Ltd. All rights reserved.</span>
+      <span class="footer-legal">RERA Regn. No.: {{ config.reraNumber }} &middot; {{ config.registrationLine }}</span>
     </div>
   </div>
 </footer>

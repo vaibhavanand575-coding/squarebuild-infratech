@@ -21,7 +21,7 @@ import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from '@angular
       font-family: var(--font-serif);
       font-size: clamp(1.6rem, 3vw, 2.2rem);
       font-weight: 700;
-      color: var(--gold-dark);
+      color: var(--color-accent);
     }
     .stat-label {
       margin-top: 0.35rem;

@@ -30,8 +30,8 @@
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
-  background: var(--gold);
-  color: var(--white);
+  background: var(--color-primary);
+  color: var(--color-surface);
   font-size: 0.72rem;
   font-weight: 600;
   padding: 0.3rem 0.65rem;
@@ -61,7 +61,7 @@
 
 .property-price {
   font-family: var(--font-serif);
-  color: var(--gold-dark);
+  color: var(--color-accent);
   font-weight: 700;
 }
 

@@ -68,7 +68,7 @@
   right: 0;
   bottom: 0;
   padding: 0.6rem 0.8rem;
-  background: linear-gradient(180deg, transparent, rgba(15, 41, 66, 0.85));
+  background: linear-gradient(180deg, transparent, rgba(27, 67, 50, 0.85));
   color: var(--white);
   font-size: 0.82rem;
   opacity: 0;
@@ -80,7 +80,7 @@
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(15, 41, 66, 0.92);
+  background: rgba(27, 67, 50, 0.92);
   z-index: 1000;
   display: flex;
   align-items: center;

@@ -16,19 +16,19 @@
 
       <div class="info-item">
         <span class="info-label">Office Address</span>
-        <p>Sector 62, Aligarh&ndash;Palwal Highway, Uttar Pradesh, India</p>
+        <p>{{ config.address }}</p>
       </div>
       <div class="info-item">
         <span class="info-label">Phone</span>
-        <p><a href="tel:+911204567890">+91 120 456 7890</a></p>
+        <p><a [href]="callHref">{{ config.phoneDisplay }}</a></p>
       </div>
       <div class="info-item">
         <span class="info-label">Email</span>
-        <p><a href="mailto:info&#64;squarebuildinfratech.com">info&#64;squarebuildinfratech.com</a></p>
+        <p><a [href]="'mailto:' + config.email">{{ config.email }}</a></p>
       </div>
       <div class="info-item">
         <span class="info-label">Working Hours</span>
-        <p>Mon &ndash; Sat, 9:30 AM &ndash; 6:30 PM</p>
+        <p>{{ config.workingHours }}</p>
       </div>
 
       <div class="map-placeholder img-fallback">

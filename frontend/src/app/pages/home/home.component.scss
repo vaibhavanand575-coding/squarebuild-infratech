@@ -11,7 +11,7 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(15, 41, 66, 0.88) 0%, rgba(15, 41, 66, 0.55) 55%, rgba(15, 41, 66, 0.35) 100%);
+  background: linear-gradient(90deg, rgba(27, 67, 50, 0.88) 0%, rgba(27, 67, 50, 0.55) 55%, rgba(27, 67, 50, 0.35) 100%);
 }
 
 .hero-inner {
@@ -62,7 +62,7 @@
 }
 
 .hero-card h3 {
-  color: var(--gold-dark);
+  color: var(--color-primary);
   font-size: 1.5rem;
 }
 
@@ -87,7 +87,7 @@
 .hero-card-price strong {
   font-family: var(--font-serif);
   font-size: 1.6rem;
-  color: var(--navy);
+  color: var(--color-accent);
 }
 
 .hero-card-price small {
@@ -128,7 +128,7 @@
 }
 
 .feature-item h4 {
-  color: var(--gold-dark);
+  color: var(--color-primary);
   font-size: 1.05rem;
 }
 
@@ -183,7 +183,7 @@
 }
 
 .amenities-list .check {
-  color: var(--gold);
+  color: var(--color-secondary);
   font-weight: 700;
 }
 

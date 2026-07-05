@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EnquiryService } from '../../core/services/enquiry.service';
 import { PropertyService } from '../../core/services/property.service';
 import { PropertySummary } from '../../core/models/property.model';
+import { SITE_CONFIG, telLink } from '../../core/config/site-config';
 
 @Component({
   selector: 'app-contact',
@@ -18,6 +19,8 @@ export class ContactComponent implements OnInit {
   submitting = false;
   submitted = false;
   submitError = '';
+  config = SITE_CONFIG;
+  callHref = telLink();
 
   form: ReturnType<FormBuilder['group']>;
 

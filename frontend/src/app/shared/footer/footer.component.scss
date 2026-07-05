@@ -85,8 +85,27 @@
 .footer-bottom {
   padding: 1.5rem 0;
   font-size: 0.85rem;
-  text-align: center;
   color: rgba(255, 255, 255, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.footer-legal {
+  font-size: 0.78rem;
+}
+
+@media (max-width: 640px) {
+  .footer-bottom-inner {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 @media (max-width: 900px) {

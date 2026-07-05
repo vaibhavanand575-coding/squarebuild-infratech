@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SITE_CONFIG, telLink } from '../../core/config/site-config';
 
 @Component({
   selector: 'app-footer',
@@ -10,4 +11,6 @@ import { RouterLink } from '@angular/router';
 })
 export class FooterComponent {
   year = new Date().getFullYear();
+  config = SITE_CONFIG;
+  callHref = telLink();
 }
