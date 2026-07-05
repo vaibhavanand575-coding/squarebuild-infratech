@@ -1,14 +1,16 @@
-<a class="property-card" [routerLink]="['/properties', property.slug]">
+<a class="property-card" [class.sold]="property.status === 'SOLD'" [routerLink]="['/properties', property.slug]">
   <div class="property-image img-fallback">
     <img [src]="property.heroImage" alt="" (error)="hideImg($event)">
-    <span class="property-badge">{{ property.status }}</span>
+    <span class="property-badge" [class.sold]="property.status === 'SOLD'">
+      {{ property.status === 'SOLD' ? 'Sold Out' : property.statusLabel }}
+    </span>
   </div>
   <div class="property-body">
     <span class="property-type">{{ property.type }}</span>
-    <h4>{{ property.name }}</h4>
+    <h4>{{ property.title }}</h4>
     <p class="property-location">{{ property.location }}</p>
     <div class="property-price">
-      {{ formatPrice(property.startingPrice) }} <small>{{ property.priceUnit }}</small>
+      {{ formatPrice(property.price) }} <small>onwards</small>
     </div>
   </div>
 </a>

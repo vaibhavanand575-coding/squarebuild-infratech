@@ -24,10 +24,7 @@
 
     <div class="footer-links">
       <h4>Properties</h4>
-      <a routerLink="/properties/urban-paradise-city">The Urban Paradise City</a>
-      <a routerLink="/properties/green-meadows-farms">Green Meadows Farms</a>
-      <a routerLink="/properties/royal-enclave-villas">Royal Enclave Villas</a>
-      <a routerLink="/properties/business-square-retail">Business Square</a>
+      <a *ngFor="let property of properties" [routerLink]="['/properties', property.slug]">{{ property.title }}</a>
     </div>
 
     <div class="footer-contact">

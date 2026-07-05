@@ -4,10 +4,11 @@ export interface EnquiryRequest {
   phone: string;
   propertySlug?: string;
   message?: string;
+  source?: string;
 }
 
 export interface EnquiryResponse {
-  id: string;
+  id: number;
   receivedAt: string;
   message: string;
 }

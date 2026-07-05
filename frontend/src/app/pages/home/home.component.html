@@ -3,86 +3,121 @@
   <div class="container hero-inner">
     <div class="hero-copy">
       <span class="eyebrow hero-eyebrow">Squarebuild Infratech Pvt. Ltd.</span>
-      <h1>Building Trust.<br>Delivering Long-Term Value.</h1>
+      <h1>Plots &amp; Villas Near Jewar International Airport</h1>
       <p>
         Plotted townships, villas, farmhouses and commercial spaces designed for comfort,
         quality construction and strong future appreciation.
       </p>
-      <div class="hero-actions">
-        <a routerLink="/properties" class="btn btn-gold">Explore Properties</a>
-        <a routerLink="/contact" class="btn btn-outline">Schedule a Site Visit</a>
-      </div>
-    </div>
 
-    <div class="hero-card" *ngIf="flagship">
-      <h3>{{ flagship.name }}</h3>
-      <p>{{ flagship.tagline }}</p>
-      <div class="hero-card-price">
+      <div class="hero-price" *ngIf="flagship">
         <span class="label">Starting price</span>
-        <strong>{{ formatPrice(flagship.startingPrice) }} <small>{{ flagship.priceUnit }}</small></strong>
+        <strong>{{ formatPrice(flagship.price) }} <small>onwards</small></strong>
       </div>
-      <a [routerLink]="['/properties', flagship.slug]" class="btn btn-primary btn-block">View Project</a>
-    </div>
-  </div>
-</section>
 
-<section class="section" *ngIf="flagship">
-  <div class="container features-layout">
-    <div class="features-copy">
-      <span class="eyebrow">Great Features</span>
-      <h2 class="section-title">{{ flagship.name }}</h2>
-      <p>{{ flagship.tagline }}. Enjoy a secure gated community with modern infrastructure and a lifestyle designed for comfort and long-term value.</p>
-      <a routerLink="/contact" class="btn btn-primary">Schedule A Tour</a>
-    </div>
-
-    <div class="features-grid grid grid-2">
-      <div class="feature-item" *ngFor="let feature of flagship.features">
-        <div class="feature-icon">{{ feature.icon.charAt(0).toUpperCase() }}</div>
-        <h4>{{ feature.title }}</h4>
-        <p>{{ feature.description }}</p>
+      <div class="hero-actions">
+        <a routerLink="/contact" class="btn btn-gold">Schedule a Site Visit</a>
+        <a routerLink="/properties" class="btn btn-outline">Explore Properties</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section-cream stats-section" *ngIf="stats">
-  <div class="container">
-    <div class="grid grid-4">
-      <app-stat-counter [value]="stats.totalSquareYards" label="Square Yards"></app-stat-counter>
-      <app-stat-counter [value]="stats.totalProjects" label="Projects"></app-stat-counter>
-      <app-stat-counter [value]="stats.residentialPlots" label="Residential Plots"></app-stat-counter>
-      <app-stat-counter [value]="stats.farmHouses" label="Farm Houses"></app-stat-counter>
+<section class="trust-bar">
+  <div class="container trust-bar-inner">
+    <div class="trust-item">
+      <span class="trust-label">RERA Regn. No.</span>
+      <strong>{{ config.reraNumber }}</strong>
+    </div>
+    <div class="trust-item" *ngIf="stats">
+      <span class="trust-label">Total Area Developed</span>
+      <strong>{{ stats.totalSquareYards.toLocaleString('en-IN') }} Sq. Yards</strong>
+    </div>
+    <div class="trust-item" *ngIf="flagship?.totalUnits">
+      <span class="trust-label">Units in Flagship Project</span>
+      <strong>{{ flagship?.totalUnits }}</strong>
+    </div>
+    <div class="trust-item">
+      <span class="trust-label">Possession</span>
+      <strong>Updated Regularly on Site Visits</strong>
     </div>
   </div>
-</section>
-
-<section class="section section-blue-light" *ngIf="flagship">
-  <div class="container amenities-layout">
-    <div class="amenities-gallery">
-      <img *ngFor="let img of flagship.gallery.slice(0, 3)" [src]="img" alt="" (error)="hideImg($event)">
-    </div>
-    <div class="amenities-copy">
-      <h2 class="section-title">Amenities</h2>
-      <p>{{ flagship.description }}</p>
-      <ul class="amenities-list">
-        <li *ngFor="let amenity of flagship.amenities">
-          <span class="check">&#10003;</span> {{ amenity }}
-        </li>
-      </ul>
-    </div>
+  <div class="container approvals">
+    <span class="approval-chip">RERA Registered</span>
+    <span class="approval-chip">Clear Title Verified</span>
+    <span class="approval-chip">Bank Loan Approved</span>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
     <div class="section-header center">
-      <span class="eyebrow">Our Portfolio</span>
-      <h2 class="section-title">Explore Our Properties</h2>
-      <p>Four distinct developments across plots, villas, farmhouses and commercial spaces.</p>
+      <span class="eyebrow">Why Invest Here</span>
+      <h2 class="section-title">Positioned for the Next Decade of Growth</h2>
+      <p>
+        Our flagship township sits directly in the growth corridor of the upcoming Jewar
+        International Airport &mdash; one of the largest infrastructure projects in North India.
+      </p>
     </div>
+    <div class="grid grid-4">
+      <div class="invest-card" *ngFor="let point of investPoints">
+        <div class="invest-stat">{{ point.stat }}</div>
+        <p>{{ point.label }}</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="grid grid-4 property-grid">
-      <app-property-card *ngFor="let property of properties" [property]="property"></app-property-card>
+<section class="section section-cream" *ngIf="featuredProperties.length">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">Our Portfolio</span>
+      <h2 class="section-title">Property Highlights</h2>
+      <p>A snapshot of our current plots, villas and farmhouses.</p>
+    </div>
+    <div class="grid grid-3 property-grid">
+      <app-property-card *ngFor="let property of featuredProperties" [property]="property"></app-property-card>
+    </div>
+    <div class="section-cta">
+      <a routerLink="/properties" class="btn btn-outline-navy">View All Properties</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" *ngIf="flagship">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">Amenities</span>
+      <h2 class="section-title">Everything Built In</h2>
+      <p>{{ flagship.title }} comes with modern infrastructure and everyday conveniences.</p>
+    </div>
+    <div class="grid grid-4">
+      <div class="amenity-card" *ngFor="let amenity of flagship.amenities">
+        <div class="amenity-icon">{{ amenity.charAt(0) }}</div>
+        <span>{{ amenity }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-blue-light" *ngIf="flagship">
+  <div class="container location-layout">
+    <div class="location-copy">
+      <span class="eyebrow">Location &amp; Connectivity</span>
+      <h2 class="section-title">{{ flagship.location }}</h2>
+      <ul class="connectivity-list">
+        <li><strong>Jewar International Airport</strong><span>~15 min drive</span></li>
+        <li><strong>Yamuna Expressway</strong><span>Direct access</span></li>
+        <li><strong>Aligarh&ndash;Palwal Highway</strong><span>On the main corridor</span></li>
+        <li><strong>Noida &amp; Greater Noida</strong><span>Well connected</span></li>
+      </ul>
+    </div>
+    <div class="location-map">
+      <iframe
+        title="Location map"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Jewar+International+Airport&output=embed">
+      </iframe>
     </div>
   </div>
 </section>
@@ -98,7 +133,7 @@
         <img [src]="img.url" [alt]="img.caption" (error)="hideImg($event)">
       </div>
     </div>
-    <div class="gallery-cta">
+    <div class="section-cta">
       <a routerLink="/gallery" class="btn btn-outline-navy">View Full Gallery</a>
     </div>
   </div>
@@ -112,9 +147,9 @@
     </div>
 
     <div class="testimonial-carousel">
-      <button class="carousel-arrow left" (click)="prevTestimonial()" aria-label="Previous">&#8249;</button>
+      <button class="carousel-arrow left" (click)="prevTestimonial()" aria-label="Previous testimonial">&#8249;</button>
       <app-testimonial-card [testimonial]="testimonials[activeTestimonial]"></app-testimonial-card>
-      <button class="carousel-arrow right" (click)="nextTestimonial()" aria-label="Next">&#8250;</button>
+      <button class="carousel-arrow right" (click)="nextTestimonial()" aria-label="Next testimonial">&#8250;</button>
     </div>
 
     <div class="carousel-dots">
@@ -128,12 +163,49 @@
   </div>
 </section>
 
-<section class="section-navy cta-banner">
-  <div class="container cta-banner-inner">
-    <div>
-      <h2>Ready to invest in your future?</h2>
-      <p>Speak to our sales team and schedule a site visit this week.</p>
+<section class="section section-navy enquiry-section" id="enquire">
+  <div class="container enquiry-layout">
+    <div class="enquiry-copy">
+      <span class="eyebrow" style="color: rgba(255,255,255,0.75)">Get In Touch</span>
+      <h2>Ready to Take the Next Step?</h2>
+      <p>Share your details and our team will call you within 24 hours to arrange a site visit.</p>
+      <ul class="enquiry-points">
+        <li>No-obligation site visits</li>
+        <li>Transparent pricing &amp; paperwork</li>
+        <li>Dedicated relationship manager</li>
+      </ul>
     </div>
-    <a routerLink="/contact" class="btn btn-gold">Schedule A Site Visit</a>
+
+    <div class="enquiry-card">
+      <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!submitted">
+        <div class="form-field">
+          <label for="home-name">Full Name</label>
+          <input id="home-name" type="text" formControlName="name" placeholder="Your name">
+          <span class="form-error" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">Name is required</span>
+        </div>
+        <div class="form-field">
+          <label for="home-email">Email</label>
+          <input id="home-email" type="email" formControlName="email" placeholder="you&#64;email.com">
+          <span class="form-error" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">Enter a valid email</span>
+        </div>
+        <div class="form-field">
+          <label for="home-phone">Phone Number</label>
+          <input id="home-phone" type="tel" formControlName="phone" placeholder="+91 98765 43210">
+          <span class="form-error" *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched">Enter a valid phone number</span>
+        </div>
+        <div class="form-field">
+          <label for="home-message">Message (optional)</label>
+          <textarea id="home-message" formControlName="message" rows="3" placeholder="Which project are you interested in?"></textarea>
+        </div>
+        <span class="form-error" *ngIf="submitError">{{ submitError }}</span>
+        <button type="submit" class="btn btn-gold btn-block" [disabled]="submitting">
+          {{ submitting ? 'Submitting...' : 'Schedule A Site Visit' }}
+        </button>
+      </form>
+
+      <div class="form-success" *ngIf="submitted">
+        Thanks! Your request has been received &mdash; our team will call you within 24 hours.
+      </div>
+    </div>
   </div>
 </section>

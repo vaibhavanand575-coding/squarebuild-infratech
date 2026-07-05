@@ -1,28 +1,32 @@
-export type PropertyType = 'PLOT' | 'VILLA' | 'FARMHOUSE' | 'COMMERCIAL';
-
-export interface Feature {
-  icon: string;
-  title: string;
-  description: string;
-}
+export type PropertyType = 'PLOT' | 'VILLA' | 'FARMHOUSE';
+export type PropertyStatus = 'AVAILABLE' | 'SOLD';
 
 export interface PropertySummary {
+  id: number;
   slug: string;
-  name: string;
+  title: string;
   type: PropertyType;
+  price: number;
+  size: number;
+  sizeUnit: string;
   location: string;
-  status: string;
-  startingPrice: number;
-  priceUnit: string;
+  status: PropertyStatus;
+  statusLabel: string;
+  featured: boolean;
   heroImage: string;
-  tagline: string;
 }
 
 export interface Property extends PropertySummary {
   description: string;
-  areaSqYards: number;
-  totalUnits: number;
-  features: Feature[];
+  totalUnits: number | null;
+  imageUrls: string[];
   amenities: string[];
-  gallery: string[];
+  createdAt: string;
+}
+
+export interface PropertyFilters {
+  type?: PropertyType;
+  status?: PropertyStatus;
+  minPrice?: number;
+  maxPrice?: number;
 }

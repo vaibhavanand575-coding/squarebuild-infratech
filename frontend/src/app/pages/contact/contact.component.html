@@ -59,7 +59,7 @@
           <label for="propertySlug">Interested Property (optional)</label>
           <select id="propertySlug" formControlName="propertySlug">
             <option value="">General Enquiry</option>
-            <option *ngFor="let property of properties" [value]="property.slug">{{ property.name }}</option>
+            <option *ngFor="let property of properties" [value]="property.slug">{{ property.title }}</option>
           </select>
         </div>
         <div class="form-field">

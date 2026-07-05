@@ -13,7 +13,7 @@
     <div class="detail-hero-overlay"></div>
     <div class="container detail-hero-inner">
       <span class="property-type-badge">{{ property.type }}</span>
-      <h1>{{ property.name }}</h1>
+      <h1>{{ property.title }}</h1>
       <p>{{ property.location }}</p>
     </div>
   </section>
@@ -24,28 +24,21 @@
         <div class="price-row">
           <div>
             <span class="eyebrow">Starting Price</span>
-            <div class="price">{{ formatPrice(property.startingPrice) }} <small>{{ property.priceUnit }}</small></div>
+            <div class="price">{{ formatPrice(property.price) }} <small>onwards</small></div>
           </div>
-          <span class="status-badge">{{ property.status }}</span>
+          <span class="status-badge" [class.sold]="property.status === 'SOLD'">
+            {{ property.status === 'SOLD' ? 'Sold Out' : property.statusLabel }}
+          </span>
         </div>
 
         <h2 class="section-title">Overview</h2>
         <p class="description">{{ property.description }}</p>
 
         <div class="spec-grid">
-          <div class="spec"><span>Area</span><strong>{{ property.areaSqYards.toLocaleString('en-IN') }} Sq. Yards</strong></div>
-          <div class="spec"><span>Units</span><strong>{{ property.totalUnits }}</strong></div>
+          <div class="spec"><span>Size</span><strong>{{ property.size.toLocaleString('en-IN') }} {{ property.sizeUnit }}</strong></div>
+          <div class="spec" *ngIf="property.totalUnits"><span>Units</span><strong>{{ property.totalUnits }}</strong></div>
           <div class="spec"><span>Type</span><strong>{{ property.type }}</strong></div>
           <div class="spec"><span>Status</span><strong>{{ property.status }}</strong></div>
-        </div>
-
-        <h3 class="section-title">Key Features</h3>
-        <div class="grid grid-2 feature-list">
-          <div class="feature-item" *ngFor="let feature of property.features">
-            <div class="feature-icon">{{ feature.icon.charAt(0).toUpperCase() }}</div>
-            <h4>{{ feature.title }}</h4>
-            <p>{{ feature.description }}</p>
-          </div>
         </div>
 
         <h3 class="section-title">Amenities</h3>
@@ -56,12 +49,12 @@
         <h3 class="section-title">Gallery</h3>
         <div class="detail-gallery">
           <div class="detail-gallery-main img-fallback">
-            <img [src]="property.gallery[activeImage]" alt="" (error)="hideImg($event)">
+            <img [src]="property.imageUrls[activeImage]" alt="" (error)="hideImg($event)">
           </div>
           <div class="detail-gallery-thumbs">
             <button
               class="thumb img-fallback"
-              *ngFor="let img of property.gallery; let i = index"
+              *ngFor="let img of property.imageUrls; let i = index"
               [class.active]="i === activeImage"
               (click)="setActiveImage(i)"
             >

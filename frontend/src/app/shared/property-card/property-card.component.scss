@@ -15,6 +15,10 @@
   box-shadow: var(--shadow);
 }
 
+.property-card.sold {
+  opacity: 0.75;
+}
+
 .property-image {
   position: relative;
   height: 190px;
@@ -36,6 +40,10 @@
   font-weight: 600;
   padding: 0.3rem 0.65rem;
   border-radius: 999px;
+}
+
+.property-badge.sold {
+  background: var(--color-text-muted);
 }
 
 .property-body { padding: 1.25rem; }

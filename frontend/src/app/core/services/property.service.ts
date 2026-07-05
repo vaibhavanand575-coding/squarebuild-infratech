@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Property, PropertySummary } from '../models/property.model';
+import { Property, PropertyFilters, PropertySummary } from '../models/property.model';
 
 @Injectable({ providedIn: 'root' })
 export class PropertyService {
@@ -9,8 +9,13 @@ export class PropertyService {
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<PropertySummary[]> {
-    return this.http.get<PropertySummary[]>(this.baseUrl);
+  getAll(filters: PropertyFilters = {}): Observable<PropertySummary[]> {
+    let params = new HttpParams();
+    if (filters.type) params = params.set('type', filters.type);
+    if (filters.status) params = params.set('status', filters.status);
+    if (filters.minPrice != null) params = params.set('minPrice', filters.minPrice);
+    if (filters.maxPrice != null) params = params.set('maxPrice', filters.maxPrice);
+    return this.http.get<PropertySummary[]>(this.baseUrl, { params });
   }
 
   getBySlug(slug: string): Observable<Property> {

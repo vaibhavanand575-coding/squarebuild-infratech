@@ -67,12 +67,17 @@
 }
 
 .status-badge {
-  background: var(--blue-light);
-  color: var(--blue);
+  background: var(--color-primary-tint);
+  color: var(--color-primary);
   padding: 0.4rem 0.9rem;
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 600;
+}
+
+.status-badge.sold {
+  background: var(--color-border);
+  color: var(--color-text-muted);
 }
 
 .description { color: var(--ink-light); }

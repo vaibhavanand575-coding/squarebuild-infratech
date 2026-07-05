@@ -23,8 +23,7 @@ export class PropertiesComponent implements OnInit {
     { label: 'All', value: 'ALL' },
     { label: 'Plots', value: 'PLOT' },
     { label: 'Villas', value: 'VILLA' },
-    { label: 'Farmhouses', value: 'FARMHOUSE' },
-    { label: 'Commercial', value: 'COMMERCIAL' }
+    { label: 'Farmhouses', value: 'FARMHOUSE' }
   ];
 
   constructor(private propertyService: PropertyService) {}
@@ -51,8 +50,8 @@ export class PropertiesComponent implements OnInit {
       ? [...this.allProperties]
       : this.allProperties.filter((p) => p.type === this.activeType);
 
-    if (this.sort === 'price-asc') result = result.sort((a, b) => a.startingPrice - b.startingPrice);
-    if (this.sort === 'price-desc') result = result.sort((a, b) => b.startingPrice - a.startingPrice);
+    if (this.sort === 'price-asc') result = result.sort((a, b) => a.price - b.price);
+    if (this.sort === 'price-desc') result = result.sort((a, b) => b.price - a.price);
 
     this.filtered = result;
   }
