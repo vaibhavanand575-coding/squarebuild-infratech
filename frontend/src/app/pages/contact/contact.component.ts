@@ -58,7 +58,8 @@ export class ContactComponent implements OnInit {
       email: value.email!,
       phone: value.phone!,
       message: value.message || '',
-      propertySlug: value.propertySlug || undefined
+      propertySlug: value.propertySlug || undefined,
+      source: 'contact_page'
     }).subscribe({
       next: () => {
         this.submitting = false;

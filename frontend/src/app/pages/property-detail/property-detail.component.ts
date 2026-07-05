@@ -78,7 +78,8 @@ export class PropertyDetailComponent implements OnInit {
       email: value.email!,
       phone: value.phone!,
       message: value.message || '',
-      propertySlug: this.property.slug
+      propertySlug: this.property.slug,
+      source: 'property_detail'
     }).subscribe({
       next: () => {
         this.submitting = false;
