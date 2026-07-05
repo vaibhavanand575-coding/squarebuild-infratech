@@ -1,0 +1,139 @@
+<section class="hero" [style.background-image]="flagship ? 'url(' + flagship.heroImage + ')' : null">
+  <div class="hero-overlay"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow hero-eyebrow">Squarebuild Infratech Pvt. Ltd.</span>
+      <h1>Building Trust.<br>Delivering Long-Term Value.</h1>
+      <p>
+        Plotted townships, villas, farmhouses and commercial spaces designed for comfort,
+        quality construction and strong future appreciation.
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/properties" class="btn btn-gold">Explore Properties</a>
+        <a routerLink="/contact" class="btn btn-outline">Schedule a Site Visit</a>
+      </div>
+    </div>
+
+    <div class="hero-card" *ngIf="flagship">
+      <h3>{{ flagship.name }}</h3>
+      <p>{{ flagship.tagline }}</p>
+      <div class="hero-card-price">
+        <span class="label">Starting price</span>
+        <strong>{{ formatPrice(flagship.startingPrice) }} <small>{{ flagship.priceUnit }}</small></strong>
+      </div>
+      <a [routerLink]="['/properties', flagship.slug]" class="btn btn-primary btn-block">View Project</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" *ngIf="flagship">
+  <div class="container features-layout">
+    <div class="features-copy">
+      <span class="eyebrow">Great Features</span>
+      <h2 class="section-title">{{ flagship.name }}</h2>
+      <p>{{ flagship.tagline }}. Enjoy a secure gated community with modern infrastructure and a lifestyle designed for comfort and long-term value.</p>
+      <a routerLink="/contact" class="btn btn-primary">Schedule A Tour</a>
+    </div>
+
+    <div class="features-grid grid grid-2">
+      <div class="feature-item" *ngFor="let feature of flagship.features">
+        <div class="feature-icon">{{ feature.icon.charAt(0).toUpperCase() }}</div>
+        <h4>{{ feature.title }}</h4>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-cream stats-section" *ngIf="stats">
+  <div class="container">
+    <div class="grid grid-4">
+      <app-stat-counter [value]="stats.totalSquareYards" label="Square Yards"></app-stat-counter>
+      <app-stat-counter [value]="stats.totalProjects" label="Projects"></app-stat-counter>
+      <app-stat-counter [value]="stats.residentialPlots" label="Residential Plots"></app-stat-counter>
+      <app-stat-counter [value]="stats.farmHouses" label="Farm Houses"></app-stat-counter>
+    </div>
+  </div>
+</section>
+
+<section class="section section-blue-light" *ngIf="flagship">
+  <div class="container amenities-layout">
+    <div class="amenities-gallery">
+      <img *ngFor="let img of flagship.gallery.slice(0, 3)" [src]="img" alt="" (error)="hideImg($event)">
+    </div>
+    <div class="amenities-copy">
+      <h2 class="section-title">Amenities</h2>
+      <p>{{ flagship.description }}</p>
+      <ul class="amenities-list">
+        <li *ngFor="let amenity of flagship.amenities">
+          <span class="check">&#10003;</span> {{ amenity }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">Our Portfolio</span>
+      <h2 class="section-title">Explore Our Properties</h2>
+      <p>Four distinct developments across plots, villas, farmhouses and commercial spaces.</p>
+    </div>
+
+    <div class="grid grid-4 property-grid">
+      <app-property-card *ngFor="let property of properties" [property]="property"></app-property-card>
+    </div>
+  </div>
+</section>
+
+<section class="section section-cream" *ngIf="galleryPreview.length">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">Property Photo Gallery</span>
+      <h2 class="section-title">A Closer Look</h2>
+    </div>
+    <div class="gallery-preview-grid">
+      <div class="gallery-preview-item img-fallback" *ngFor="let img of galleryPreview">
+        <img [src]="img.url" [alt]="img.caption" (error)="hideImg($event)">
+      </div>
+    </div>
+    <div class="gallery-cta">
+      <a routerLink="/gallery" class="btn btn-outline-navy">View Full Gallery</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" *ngIf="testimonials.length">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">Testimonials</span>
+      <h2 class="section-title">What Our Buyers Say</h2>
+    </div>
+
+    <div class="testimonial-carousel">
+      <button class="carousel-arrow left" (click)="prevTestimonial()" aria-label="Previous">&#8249;</button>
+      <app-testimonial-card [testimonial]="testimonials[activeTestimonial]"></app-testimonial-card>
+      <button class="carousel-arrow right" (click)="nextTestimonial()" aria-label="Next">&#8250;</button>
+    </div>
+
+    <div class="carousel-dots">
+      <button
+        *ngFor="let t of testimonials; let i = index"
+        [class.active]="i === activeTestimonial"
+        (click)="goToTestimonial(i)"
+        [attr.aria-label]="'Go to testimonial ' + (i + 1)"
+      ></button>
+    </div>
+  </div>
+</section>
+
+<section class="section-navy cta-banner">
+  <div class="container cta-banner-inner">
+    <div>
+      <h2>Ready to invest in your future?</h2>
+      <p>Speak to our sales team and schedule a site visit this week.</p>
+    </div>
+    <a routerLink="/contact" class="btn btn-gold">Schedule A Site Visit</a>
+  </div>
+</section>

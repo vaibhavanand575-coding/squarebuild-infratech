@@ -1,0 +1,112 @@
+<ng-container *ngIf="notFound">
+  <section class="section not-found">
+    <div class="container">
+      <h1>Property Not Found</h1>
+      <p>The property you're looking for may have been renamed or removed.</p>
+      <a routerLink="/properties" class="btn btn-primary">Browse All Properties</a>
+    </div>
+  </section>
+</ng-container>
+
+<ng-container *ngIf="property">
+  <section class="detail-hero" [style.background-image]="'url(' + property.heroImage + ')'">
+    <div class="detail-hero-overlay"></div>
+    <div class="container detail-hero-inner">
+      <span class="property-type-badge">{{ property.type }}</span>
+      <h1>{{ property.name }}</h1>
+      <p>{{ property.location }}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container detail-layout">
+      <div class="detail-main">
+        <div class="price-row">
+          <div>
+            <span class="eyebrow">Starting Price</span>
+            <div class="price">{{ formatPrice(property.startingPrice) }} <small>{{ property.priceUnit }}</small></div>
+          </div>
+          <span class="status-badge">{{ property.status }}</span>
+        </div>
+
+        <h2 class="section-title">Overview</h2>
+        <p class="description">{{ property.description }}</p>
+
+        <div class="spec-grid">
+          <div class="spec"><span>Area</span><strong>{{ property.areaSqYards.toLocaleString('en-IN') }} Sq. Yards</strong></div>
+          <div class="spec"><span>Units</span><strong>{{ property.totalUnits }}</strong></div>
+          <div class="spec"><span>Type</span><strong>{{ property.type }}</strong></div>
+          <div class="spec"><span>Status</span><strong>{{ property.status }}</strong></div>
+        </div>
+
+        <h3 class="section-title">Key Features</h3>
+        <div class="grid grid-2 feature-list">
+          <div class="feature-item" *ngFor="let feature of property.features">
+            <div class="feature-icon">{{ feature.icon.charAt(0).toUpperCase() }}</div>
+            <h4>{{ feature.title }}</h4>
+            <p>{{ feature.description }}</p>
+          </div>
+        </div>
+
+        <h3 class="section-title">Amenities</h3>
+        <ul class="amenities-list">
+          <li *ngFor="let amenity of property.amenities"><span class="check">&#10003;</span> {{ amenity }}</li>
+        </ul>
+
+        <h3 class="section-title">Gallery</h3>
+        <div class="detail-gallery">
+          <div class="detail-gallery-main img-fallback">
+            <img [src]="property.gallery[activeImage]" alt="" (error)="hideImg($event)">
+          </div>
+          <div class="detail-gallery-thumbs">
+            <button
+              class="thumb img-fallback"
+              *ngFor="let img of property.gallery; let i = index"
+              [class.active]="i === activeImage"
+              (click)="setActiveImage(i)"
+            >
+              <img [src]="img" alt="" (error)="hideImg($event)">
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="enquiry-panel">
+        <div class="enquiry-card">
+          <h3>Schedule a Site Visit</h3>
+          <p>Share your details and our team will get in touch within 24 hours.</p>
+
+          <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="!submitted">
+            <div class="form-field">
+              <label for="name">Full Name</label>
+              <input id="name" type="text" formControlName="name" placeholder="Your name">
+              <span class="form-error" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">Name is required</span>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" type="email" formControlName="email" placeholder="you&#64;email.com">
+              <span class="form-error" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">Enter a valid email</span>
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone Number</label>
+              <input id="phone" type="tel" formControlName="phone" placeholder="+91 98765 43210">
+              <span class="form-error" *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched">Enter a valid phone number</span>
+            </div>
+            <div class="form-field">
+              <label for="message">Message (optional)</label>
+              <textarea id="message" formControlName="message" rows="3" placeholder="Any specific questions?"></textarea>
+            </div>
+            <span class="form-error" *ngIf="submitError">{{ submitError }}</span>
+            <button type="submit" class="btn btn-gold btn-block" [disabled]="submitting">
+              {{ submitting ? 'Submitting...' : 'Schedule A Site Visit' }}
+            </button>
+          </form>
+
+          <div class="form-success" *ngIf="submitted">
+            Thanks! Your request has been received &mdash; our team will call you within 24 hours.
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</ng-container>

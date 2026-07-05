@@ -1,0 +1,36 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow hero-eyebrow">Properties</span>
+    <h1>Plots, Villas, Farmhouses &amp; Commercial Spaces</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="filter-bar">
+      <div class="type-filters">
+        <button
+          *ngFor="let filter of typeFilters"
+          [class.active]="activeType === filter.value"
+          (click)="setType(filter.value)"
+        >{{ filter.label }}</button>
+      </div>
+
+      <select class="sort-select" (change)="setSort($any($event.target).value)">
+        <option value="default">Sort: Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+      </select>
+    </div>
+
+    <p class="result-count">{{ filtered.length }} propert{{ filtered.length === 1 ? 'y' : 'ies' }} found</p>
+
+    <div class="grid grid-4">
+      <app-property-card *ngFor="let property of filtered" [property]="property"></app-property-card>
+    </div>
+
+    <div class="empty-state" *ngIf="!filtered.length">
+      <p>No properties match this filter right now. Try another category.</p>
+    </div>
+  </div>
+</section>

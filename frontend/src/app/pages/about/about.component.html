@@ -1,0 +1,70 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow hero-eyebrow">About Us</span>
+    <h1>Two Decades of Building Communities, Not Just Structures</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container about-layout">
+    <div class="about-image img-fallback">
+      <img src="https://picsum.photos/seed/about-office/900/700" alt="Squarebuild Infratech office" (error)="$any($event.target).style.display='none'">
+    </div>
+    <div class="about-copy">
+      <span class="eyebrow">Our Story</span>
+      <h2 class="section-title">Squarebuild Infratech Pvt. Ltd.</h2>
+      <p>
+        Squarebuild Infratech was founded with a simple premise: buyers deserve properties that hold their value
+        because they were built and located well &mdash; not just marketed well. What started as a single plotted
+        development has grown into a portfolio spanning residential plots, villas, farmhouses and commercial spaces.
+      </p>
+      <p>
+        Every project we take on is anchored to a growth corridor &mdash; an upcoming highway, an expressway, or in
+        the case of our flagship township, the upcoming Jewar International Airport &mdash; so that early buyers
+        benefit from genuine infrastructure-led appreciation rather than speculative pricing.
+      </p>
+      <a routerLink="/properties" class="btn btn-primary">View Our Properties</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-cream" *ngIf="stats">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">By The Numbers</span>
+      <h2 class="section-title">Our Track Record</h2>
+    </div>
+    <div class="grid grid-4">
+      <app-stat-counter [value]="stats.totalSquareYards" label="Square Yards Developed"></app-stat-counter>
+      <app-stat-counter [value]="stats.totalProjects" label="Active Projects"></app-stat-counter>
+      <app-stat-counter [value]="stats.residentialPlots" label="Residential Plots"></app-stat-counter>
+      <app-stat-counter [value]="stats.yearFounded" [suffix]="''" label="Flagship Launch Year"></app-stat-counter>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header center">
+      <span class="eyebrow">What Drives Us</span>
+      <h2 class="section-title">Our Values</h2>
+    </div>
+    <div class="grid grid-4">
+      <div class="value-card" *ngFor="let value of values">
+        <div class="value-icon">{{ value.icon }}</div>
+        <h4>{{ value.title }}</h4>
+        <p>{{ value.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-navy cta-banner">
+  <div class="container cta-banner-inner">
+    <div>
+      <h2>Want to know more about a specific project?</h2>
+      <p>Our team is happy to walk you through site plans, pricing and payment schedules.</p>
+    </div>
+    <a routerLink="/contact" class="btn btn-gold">Contact Our Team</a>
+  </div>
+</section>

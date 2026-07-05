@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: infratech-service
+
+infratech:
+  cors:
+    allowed-origin: http://localhost:4200

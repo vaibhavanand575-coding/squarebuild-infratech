@@ -1,0 +1,181 @@
+.not-found { text-align: center; padding: 6rem 0; }
+
+.detail-hero {
+  position: relative;
+  height: 340px;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--navy);
+}
+
+.detail-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 41, 66, 0.3) 0%, rgba(15, 41, 66, 0.85) 100%);
+}
+
+.detail-hero-inner {
+  position: relative;
+  color: var(--white);
+  padding-bottom: 2rem;
+}
+
+.property-type-badge {
+  display: inline-block;
+  background: var(--gold);
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.detail-hero-inner h1 { color: var(--white); margin-bottom: 0.25rem; }
+.detail-hero-inner p { color: rgba(255, 255, 255, 0.85); margin: 0; }
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.75rem;
+}
+
+.price {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+
+.price small {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  font-weight: 400;
+}
+
+.status-badge {
+  background: var(--blue-light);
+  color: var(--blue);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.description { color: var(--ink-light); }
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.spec {
+  background: var(--cream);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  text-align: center;
+}
+
+.spec span { display: block; font-size: 0.78rem; color: var(--ink-light); margin-bottom: 0.3rem; }
+.spec strong { color: var(--navy); font-family: var(--font-serif); }
+
+.section-title { margin-top: 2.5rem; }
+
+.feature-list { margin-top: 1.25rem; }
+
+.feature-item .feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--blue-light);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.feature-item h4 { color: var(--gold-dark); font-size: 1rem; margin-bottom: 0.25rem; }
+.feature-item p { color: var(--ink-light); font-size: 0.9rem; }
+
+.amenities-list {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.amenities-list li { display: flex; gap: 0.5rem; font-size: 0.92rem; }
+.amenities-list .check { color: var(--gold); font-weight: 700; }
+
+.detail-gallery { margin-top: 1.25rem; }
+
+.detail-gallery-main {
+  height: 380px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.detail-gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+
+.detail-gallery-thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+.thumb {
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  height: 80px;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb.active { border-color: var(--gold); }
+
+.enquiry-panel { position: sticky; top: 90px; }
+
+.enquiry-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+}
+
+.enquiry-card h3 { color: var(--navy); }
+.enquiry-card > p { color: var(--ink-light); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+@media (max-width: 960px) {
+  .detail-layout { grid-template-columns: 1fr; }
+  .enquiry-panel { position: static; }
+  .spec-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .amenities-list { grid-template-columns: 1fr; }
+  .detail-gallery-thumbs { grid-template-columns: repeat(3, 1fr); }
+}

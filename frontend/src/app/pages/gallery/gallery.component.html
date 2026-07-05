@@ -1,0 +1,33 @@
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow hero-eyebrow">Gallery</span>
+    <h1>A Visual Tour of Our Projects</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="type-filters">
+      <button
+        *ngFor="let category of categories"
+        [class.active]="activeCategory === category.value"
+        (click)="setCategory(category.value)"
+      >{{ category.label }}</button>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item img-fallback" *ngFor="let img of filtered; let i = index" (click)="open(i)">
+        <img [src]="img.url" [alt]="img.caption" (error)="hideImg($event)">
+        <div class="gallery-caption">{{ img.caption }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" *ngIf="lightboxIndex >= 0" (click)="close()">
+  <button class="lightbox-close" (click)="close()" aria-label="Close">&#10005;</button>
+  <button class="lightbox-arrow left" (click)="prev($event)" aria-label="Previous">&#8249;</button>
+  <img [src]="filtered[lightboxIndex].url" [alt]="filtered[lightboxIndex].caption" (click)="$event.stopPropagation()">
+  <button class="lightbox-arrow right" (click)="next($event)" aria-label="Next">&#8250;</button>
+  <div class="lightbox-caption">{{ filtered[lightboxIndex].caption }}</div>
+</div>

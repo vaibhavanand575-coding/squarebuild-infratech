@@ -1,0 +1,14 @@
+<a class="property-card" [routerLink]="['/properties', property.slug]">
+  <div class="property-image img-fallback">
+    <img [src]="property.heroImage" alt="" (error)="hideImg($event)">
+    <span class="property-badge">{{ property.status }}</span>
+  </div>
+  <div class="property-body">
+    <span class="property-type">{{ property.type }}</span>
+    <h4>{{ property.name }}</h4>
+    <p class="property-location">{{ property.location }}</p>
+    <div class="property-price">
+      {{ formatPrice(property.startingPrice) }} <small>{{ property.priceUnit }}</small>
+    </div>
+  </div>
+</a>
