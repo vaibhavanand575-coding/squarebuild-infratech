@@ -30,8 +30,14 @@
 
 .hero-copy h1 {
   color: var(--color-surface);
-  font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+  font-size: clamp(2.3rem, 4.8vw, 3.6rem);
+  font-weight: 500;
   margin-bottom: var(--space-3);
+}
+
+.hero-copy h1 em {
+  font-style: italic;
+  color: var(--color-accent-on-dark);
 }
 
 .hero-copy > p {
@@ -54,7 +60,7 @@
 .hero-price strong {
   font-family: var(--font-serif);
   font-size: 2rem;
-  color: var(--color-accent);
+  color: var(--color-accent-on-dark);
 }
 
 .hero-price small {
@@ -332,7 +338,7 @@
   content: '\2713';
   position: absolute;
   left: 0;
-  color: var(--color-accent);
+  color: var(--color-accent-on-dark);
   font-weight: 700;
 }
 

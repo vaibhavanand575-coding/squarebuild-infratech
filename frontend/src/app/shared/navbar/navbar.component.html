@@ -1,4 +1,4 @@
-<header class="navbar" [class.scrolled]="scrolled">
+<header class="navbar" [class.scrolled]="scrolled || menuOpen">
   <div class="container navbar-inner">
     <a routerLink="/" class="brand" (click)="closeMenu()">
       <span class="brand-mark">SQ</span>

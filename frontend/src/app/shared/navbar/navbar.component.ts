@@ -15,7 +15,7 @@ export class NavbarComponent {
 
   @HostListener('window:scroll')
   onScroll(): void {
-    this.scrolled = window.scrollY > 24;
+    this.scrolled = window.scrollY > 40;
   }
 
   toggleMenu(): void {

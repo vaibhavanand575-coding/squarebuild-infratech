@@ -2,24 +2,32 @@
 html, body { margin: 0; padding: 0; }
 
 :root {
-  /* Brand palette (60-30-10: background/white dominant, green for structure, gold only for CTAs & key figures) */
-  --color-bg: #F7F5F0;
-  --color-bg-alt: #EFEADF;
+  /* Brand palette — muted, editorial take on the green/gold identity:
+     deep desaturated forest (near-black) instead of vivid green, antique
+     brass instead of bright gold. Every pairing below is checked against
+     WCAG AA (4.5:1 normal text / 3:1 large text). */
+  --color-bg: #F6F1E7;
+  --color-bg-alt: #EDE6D6;
   --color-surface: #FFFFFF;
-  --color-primary: #1B4332;
-  --color-primary-dark: #12291F;
-  --color-primary-tint: #E7EFEA;
-  --color-secondary: #2D6A4F;
-  --color-accent: #C9A227;
-  --color-accent-hover: #B08D1E;
-  --color-on-accent: #3A2E00;
-  /* WCAG AA-compliant gold for standalone text (prices, stat figures) on
-     light backgrounds — #C9A227 itself only reaches 2.42:1 on white, well
-     under the 4.5:1 (normal text) / 3:1 (large text) AA minimums. */
-  --color-accent-text: #8F6323;
-  --color-text: #2D2A26;
-  --color-text-muted: #6B6459;
-  --color-border: #E4DFD3;
+  --color-primary: #1A2B22;
+  --color-primary-dark: #0F1B15;
+  --color-primary-tint: #E9EDE9;
+  --color-secondary: #52705F;
+  --color-accent: #A9824B;
+  --color-accent-hover: #8F6C3D;
+  --color-on-accent: #2A1F0F;
+  /* WCAG AA-compliant brass for standalone text (prices, stat figures) on
+     light backgrounds — the raw accent only clears the 3:1 large-text
+     minimum, not the 4.5:1 normal-text minimum. */
+  --color-accent-text: #7A5C2E;
+  /* Lighter brass for standalone text on dark backgrounds (nav over the
+     hero, footer, other dark sections) — the light-mode accent-text is
+     too dark to read there; the raw accent itself falls just short of
+     4.5:1 on --color-primary. */
+  --color-accent-on-dark: #C0A068;
+  --color-text: #2A2620;
+  --color-text-muted: #6B6252;
+  --color-border: #E2D9C4;
 
   /* Legacy aliases kept for readability in existing component styles */
   --navy: var(--color-primary);
@@ -42,13 +50,14 @@ html, body { margin: 0; padding: 0; }
   --space-5: 40px;
   --space-6: 48px;
   --space-7: 64px;
-  --space-8: 80px;
+  --space-8: 96px;
+  --space-9: 128px;
 
-  --radius-sm: 8px;
-  --radius: 14px;
-  --radius-lg: 22px;
-  --shadow: 0 20px 50px rgba(27, 67, 50, 0.14);
-  --shadow-sm: 0 8px 24px rgba(27, 67, 50, 0.09);
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 18px;
+  --shadow: 0 24px 60px rgba(15, 20, 15, 0.10);
+  --shadow-sm: 0 10px 28px rgba(15, 20, 15, 0.07);
 
   --font-serif: 'Fraunces', Georgia, serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -64,6 +73,7 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
+  font-weight: 500;
   color: var(--color-primary);
   line-height: 1.2;
   margin: 0 0 var(--space-1);
@@ -99,17 +109,35 @@ button { font-family: var(--font-sans); }
 
 .eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-1);
-  display: block;
+  letter-spacing: 0.18em;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--color-accent-text);
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 1.5em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
 }
 
 .section-title {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: clamp(2rem, 3.6vw, 3rem);
   color: var(--color-primary);
+  font-weight: 500;
+}
+
+.section-title em,
+h1 em, h2 em, h3 em {
+  font-style: italic;
+  color: var(--color-accent-text);
 }
 
 /* Reserved for price tags / key stat figures per the 60-30-10 rule: gold only for CTAs & key figures */
@@ -132,28 +160,30 @@ button { font-family: var(--font-sans); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-1);
-  padding: 0.9rem 1.85rem;
+  gap: 0.6em;
+  padding: 0.95rem 1.9rem;
   border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 500;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
   white-space: nowrap;
 }
 
 .btn:hover { transform: translateY(-2px); }
 
-/* Structural / secondary action button (green) */
+/* Structural / secondary action button */
 .btn-primary {
   background: var(--color-primary);
   color: var(--color-surface);
 }
 .btn-primary:hover { background: var(--color-primary-dark); }
 
-/* Primary conversion CTA (gold) — reserved for the main call to action per screen */
+/* Primary conversion CTA (brass) — reserved for the main call to action per screen */
 .btn-gold {
   background: var(--color-accent);
   color: var(--color-on-accent);
@@ -162,14 +192,14 @@ button { font-family: var(--font-sans); }
 
 .btn-outline {
   background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   color: var(--color-surface);
 }
-.btn-outline:hover { background: rgba(255, 255, 255, 0.12); }
+.btn-outline:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.9); }
 
 .btn-outline-navy {
   background: transparent;
-  border: 1.5px solid var(--color-primary);
+  border: 1px solid var(--color-primary);
   color: var(--color-primary);
 }
 .btn-outline-navy:hover { background: var(--color-primary); color: var(--color-surface); }
