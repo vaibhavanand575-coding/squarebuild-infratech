@@ -4,8 +4,8 @@
  */
 export const SITE_CONFIG = {
   // WhatsApp/call number, international format, no '+' or spaces (e.g. 919876543210)
-  phone: '910000000000',
-  phoneDisplay: '+91 00000 00000',
+  phone: '919818501169',
+  phoneDisplay: '+91 98185 01169',
   email: 'info@squarebuildinfratech.com',
   address: 'Sector 62, Aligarh–Palwal Highway, Uttar Pradesh, India',
   workingHours: 'Mon – Sat, 9:30 AM – 6:30 PM',
