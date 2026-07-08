@@ -146,8 +146,67 @@ h1 em, h2 em, h3 em {
 }
 
 .section-header {
+  position: relative;
   max-width: 640px;
   margin-bottom: var(--space-6);
+}
+
+/* Recurring decorative motif: a thin ring floating near a section start.
+   Opt-in (add to a handful of section headers) rather than blanket-applied,
+   so it reads as a signature detail rather than visual noise. */
+.ring-decor {
+  position: absolute;
+  top: -22px;
+  left: -18px;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.section-header.center .ring-decor {
+  left: 50%;
+  top: -34px;
+  transform: translateX(-90px);
+}
+
+/* Minimal "view all" style link — text + trailing line, no button box */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.link-arrow::after {
+  content: '';
+  width: 1.6em;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.2s ease;
+}
+
+.link-arrow:hover {
+  color: var(--color-accent-text);
+}
+
+.link-arrow:hover::after {
+  width: 2.6em;
+}
+
+.link-arrow.on-dark {
+  color: var(--color-surface);
+}
+
+.link-arrow.on-dark:hover {
+  color: var(--color-accent-on-dark);
 }
 
 .section-header.center {

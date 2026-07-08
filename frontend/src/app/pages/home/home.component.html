@@ -51,6 +51,7 @@
 <section class="section">
   <div class="container">
     <div class="section-header center">
+      <span class="ring-decor" aria-hidden="true"></span>
       <span class="eyebrow">Why Invest Here</span>
       <h2 class="section-title">Positioned for the Next Decade of Growth</h2>
       <p>
@@ -78,7 +79,7 @@
       <app-property-card *ngFor="let property of featuredProperties" [property]="property"></app-property-card>
     </div>
     <div class="section-cta">
-      <a routerLink="/properties" class="btn btn-outline-navy">View All Properties</a>
+      <a routerLink="/properties" class="link-arrow">View All Properties</a>
     </div>
   </div>
 </section>
@@ -125,6 +126,7 @@
 <section class="section section-cream" *ngIf="galleryPreview.length">
   <div class="container">
     <div class="section-header center">
+      <span class="ring-decor" aria-hidden="true"></span>
       <span class="eyebrow">Property Photo Gallery</span>
       <h2 class="section-title">A Closer Look</h2>
     </div>
@@ -134,7 +136,7 @@
       </div>
     </div>
     <div class="section-cta">
-      <a routerLink="/gallery" class="btn btn-outline-navy">View Full Gallery</a>
+      <a routerLink="/gallery" class="link-arrow">View Full Gallery</a>
     </div>
   </div>
 </section>
